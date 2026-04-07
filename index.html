@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Beverly Hills Kaza | Colorful Premium Plots | Amaravati</title>
+    <!-- Google Fonts + Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(145deg, #fef9f0 0%, #fff7eb 100%);
+            color: #1f2a2e;
+            line-height: 1.4;
+            scroll-behavior: smooth;
+        }
+
+        /* vibrant modern palette */
+        :root {
+            --deep-teal: #0f2c33;
+            --coral-bright: #ff6b4a;
+            --sunset-amber: #f9a826;
+            --gold-mustard: #e5b83c;
+            --pure-white: #ffffff;
+            --shadow-lg: 0 25px 40px -12px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 2.4rem;
+            background: linear-gradient(135deg, #0f2c33, #c9512f);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.8rem;
+        }
+
+        .section-subhead {
+            font-size: 1.1rem;
+            color: #5b6e6b;
+            font-weight: 500;
+            border-left: 4px solid var(--coral-bright);
+            padding-left: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(95deg, #ff6b4a, #ff8c5a);
+            color: white;
+            font-weight: 700;
+            padding: 14px 32px;
+            border-radius: 60px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+            box-shadow: 0 8px 18px rgba(255, 107, 74, 0.3);
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(95deg, #e55a3b, #ff7048);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px -6px rgba(255, 107, 74, 0.5);
+        }
+
+        /* navbar */
+        .navbar {
+            background: rgba(255, 255, 245, 0.96);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 16px 0;
+        }
+
+        .nav-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo h1 {
+            font-size: 1.9rem;
+            font-weight: 800;
+            background: linear-gradient(125deg, #0f2c33, #c9512f, #f9a826);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+        .logo span {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--coral-bright);
+            letter-spacing: 1px;
+        }
+
+        /* Hero Section - default row layout (desktop) */
+        .hero {
+            background: radial-gradient(circle at 80% 20%, rgba(255, 239, 210, 0.8), rgba(255, 235, 205, 0.9)), url('https://placehold.co/1600x800/fce5cd/d99e4e?text=Luxury+Plots+Visual');
+            background-size: cover;
+            background-blend-mode: overlay;
+            padding: 70px 0 80px;
+            border-bottom: 1px solid #ffe0b5;
+        }
+
+        .hero-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 48px;
+            align-items: center;
+        }
+
+        /* On mobile: image first, content below */
+        @media (max-width: 768px) {
+            .hero-grid {
+                flex-direction: column-reverse; /* Image appears first, then content below */
+                gap: 32px;
+            }
+            .hero-content {
+                text-align: center;
+            }
+            .hero-stats {
+                justify-content: center;
+            }
+            .hero-badge {
+                margin-left: auto;
+                margin-right: auto;
+                width: fit-content;
+            }
+            .hero-content h1 {
+                font-size: 2.4rem;
+            }
+            .price-highlight {
+                font-size: 1.8rem;
+            }
+            .btn-primary {
+                justify-content: center;
+            }
+        }
+
+        .hero-content {
+            flex: 1.2;
+        }
+
+        .hero-badge {
+            background: rgba(249, 168, 38, 0.2);
+            backdrop-filter: blur(4px);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 700;
+            color: #b45f2a;
+            margin-bottom: 24px;
+            border: 1px solid rgba(249, 168, 38, 0.4);
+        }
+
+        .hero-content h1 {
+            font-size: 3.8rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            background: linear-gradient(130deg, #0f2c33, #d45a36);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .price-highlight {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #e55a3b;
+            margin: 20px 0 12px;
+        }
+
+        .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            margin: 30px 0;
+        }
+
+        .stat {
+            background: rgba(255,255,240,0.7);
+            backdrop-filter: blur(4px);
+            padding: 8px 20px;
+            border-radius: 60px;
+            font-weight: 600;
+        }
+
+        /* Image container with pointer cursor for fullscreen zoom */
+        .hero-image-card {
+            flex: 0.9;
+            background: linear-gradient(145deg, #ffe6c7, #ffd9b5);
+            border-radius: 48px;
+            padding: 12px;
+            box-shadow: var(--shadow-lg);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .hero-image-card:hover {
+            transform: scale(1.02);
+        }
+        .hero-image-card img {
+            width: 100%;
+            border-radius: 40px;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            display: block;
+            pointer-events: none;
+        }
+
+        /* Cards & Amenities - fully responsive */
+        .phase-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            margin: 50px 0 30px;
+        }
+        .card-premium {
+            background: var(--pure-white);
+            border-radius: 36px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.08);
+            flex: 1;
+            min-width: 260px;
+            padding: 34px 28px;
+            transition: all 0.3s;
+            border: 1px solid #ffdfb8;
+            position: relative;
+            overflow: hidden;
+        }
+        .card-premium::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(to bottom, #ff6b4a, #f9a826);
+        }
+        .card-premium:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 28px 38px -12px rgba(249, 168, 38, 0.25);
+        }
+        .phase-title {
+            font-size: 2rem;
+            font-weight: 800;
+        }
+        .price-tag {
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: #c9512f;
+            margin: 18px 0 10px;
+        }
+        .plan-detail {
+            background: #fff6ea;
+            border-radius: 28px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .plan-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 12px 0;
+            font-weight: 500;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .note-asterisk {
+            background: linear-gradient(115deg, #fff0df, #fff7e8);
+            padding: 20px 26px;
+            border-radius: 28px;
+            margin: 30px 0;
+            border-left: 6px solid #f9a826;
+            font-weight: 500;
+        }
+
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 20px;
+            margin: 35px 0;
+        }
+        .amenity-item {
+            background: white;
+            padding: 18px 12px;
+            border-radius: 80px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.2s;
+            border: 1px solid #ffd9ae;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .amenity-item i {
+            font-size: 1.7rem;
+            background: linear-gradient(145deg, #ff6b4a, #f9a826);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .highlights-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 16px;
+            margin: 35px 0;
+        }
+        .highlight-li {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: white;
+            padding: 12px 22px;
+            border-radius: 80px;
+            font-weight: 500;
+            border: 1px solid #ffe1bb;
+        }
+
+        .investment-banner {
+            background: linear-gradient(125deg, #0f2c33, #2f5c64);
+            border-radius: 48px;
+            padding: 38px 28px;
+            margin: 40px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            color: white;
+        }
+        .investment-item {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            flex-wrap: wrap;
+        }
+        .investment-item i {
+            font-size: 2.5rem;
+            color: #f9a826;
+        }
+
+        .enquiry-section {
+            background: linear-gradient(135deg, #fff2e0, #ffe6d0);
+            border-radius: 56px;
+            padding: 52px 44px;
+            margin: 60px 0;
+            box-shadow: 0 35px 45px -15px rgba(0,0,0,0.1);
+        }
+        .form-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .input-group {
+            flex: 1;
+            min-width: 210px;
+        }
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 16px 20px;
+            border-radius: 80px;
+            border: 1px solid #ffc48a;
+            background: white;
+            font-size: 1rem;
+            outline: none;
+            font-family: inherit;
+        }
+        .enquiry-btn {
+            background: linear-gradient(95deg, #25D366, #128C7E);
+            border: none;
+            padding: 0 32px;
+            border-radius: 80px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            transition: 0.2s;
+        }
+        .enquiry-btn:hover {
+            background: linear-gradient(95deg, #1ebc5e, #0a6b5e);
+            transform: scale(0.98);
+        }
+
+        footer {
+            background: #0f2c33;
+            color: #fad6b3;
+            padding: 48px 0;
+            border-radius: 48px 48px 0 0;
+            text-align: center;
+        }
+
+        /* FULLSCREEN MODAL STYLES - Image Enlarger */
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+        }
+        .modal-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 24px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+        .close-modal-btn {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(12px);
+            border: none;
+            font-size: 2.8rem;
+            color: white;
+            cursor: pointer;
+            width: 60px;
+            height: 60px;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            font-weight: 300;
+            z-index: 2001;
+        }
+        .close-modal-btn:hover {
+            background: #ff6b4a;
+            transform: scale(1.05);
+        }
+        @media (max-width: 900px) {
+            .container { padding: 0 20px; }
+            .phase-cards { flex-direction: column; }
+            .enquiry-section { padding: 32px 24px; }
+            .investment-item { font-size: 1rem; }
+            .close-modal-btn { top: 20px; right: 20px; width: 50px; height: 50px; font-size: 2rem; }
+            h2 { font-size: 2rem; }
+        }
+        @media (max-width: 550px) {
+            .hero-stats { flex-direction: column; align-items: center; gap: 12px;}
+            .stat { width: auto; }
+            .hero-content h1 { font-size: 2rem; }
+            .price-highlight { font-size: 1.6rem; }
+            h2 { font-size: 1.8rem; }
+            .amenities-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+            .amenity-item { padding: 12px 8px; font-size: 0.85rem; }
+            .highlight-li { font-size: 0.85rem; padding: 8px 16px; }
+            .investment-item { font-size: 0.9rem; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="container nav-flex">
+        <div class="logo">
+            <h1>BEVERLY HILLS<br><span>KAZA • AMARAVATI</span></h1>
+        </div>
+        <div class="cta-header">
+            <a href="#enquiry" class="btn-primary" style="text-decoration: none;"><i class="fab fa-whatsapp"></i> Enquire Now</a>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <!-- Hero Section with Clickable Image - on mobile image appears above text due to flex-direction: column-reverse -->
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-image-card" id="heroImageTrigger">
+                <img src="https://bbgindia.com/assets/img/Img-1_134076800971374647.jpeg" alt="Beverly Hills Kaza vibrant view" id="heroImg">
+            </div>
+            <div class="hero-content">
+                <div class="hero-badge"><i class="fas fa-bolt"></i> Premium Plots • High ROI</div>
+                <h1>Where Luxury Blooms <br>in Amaravati's Heart</h1>
+                <p style="font-size: 1.1rem; color: #3e4a47; font-weight: 500;">Vibrant community, future-ready infrastructure & world-class amenities.</p>
+                <div class="price-highlight">Starting ₹24,999 / sq.yd</div>
+                <div class="hero-stats">
+                    <div class="stat"><i class="fas fa-map-pin" style="color:#ff6b4a;"></i> Kaza Junction</div>
+                    <div class="stat"><i class="fas fa-subway"></i> NH-16 & ORR</div>
+                    <div class="stat"><i class="fas fa-chart-line"></i> 30% Appreciation Potential</div>
+                </div>
+                <a href="#enquiry" class="btn-primary"><i class="fab fa-whatsapp"></i> Download Brochure</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Payment plans -->
+        <h2>Exclusive Investment Plans</h2>
+        <div class="section-subhead">Flexible payment options | Zero hidden charges</div>
+        <div class="phase-cards">
+            <div class="card-premium">
+                <div class="phase-title">🌿 Beverly Hills <span style="color: #ff6b4a;">Ph-1</span></div>
+                <div class="price-tag">₹25,999 <span style="font-size:1rem;">/sq.yd</span></div>
+                <div class="plan-detail">
+                    <div class="plan-item"><span>🔹 Booking Amount</span><strong>₹1,00,000</strong></div>
+                    <div class="plan-item"><span>🔸 Allotment (25%)</span><strong>Within 7 days</strong></div>
+                    <div class="plan-item"><span>🔹 Full Payment</span><strong>100% within 30 days</strong></div>
+                </div>
+                <div style="margin-top: 20px;"><i class="fas fa-crown" style="color:#f9a826;"></i> Premium corner plots available</div>
+            </div>
+            <div class="card-premium">
+                <div class="phase-title">🏙️ Beverly Hills <span style="color: #ff6b4a;">Ph-2,3&4</span></div>
+                <div class="price-tag">₹24,999 <span style="font-size:1rem;">/sq.yd</span></div>
+                <div class="plan-detail">
+                    <div class="plan-item"><span>🔹 Booking Amount</span><strong>₹1,00,000</strong></div>
+                    <div class="plan-item"><span>🔸 Allotment (25%)</span><strong>Within 7 days</strong></div>
+                    <div class="plan-item"><span>🔹 Full Payment</span><strong>100% within 30 days</strong></div>
+                </div>
+                <div style="margin-top: 20px;"><i class="fas fa-chart-simple"></i> High growth corridor | Early bird offer</div>
+            </div>
+        </div>
+
+        <div class="note-asterisk">
+            <i class="fas fa-info-circle" style="color:#f9a826;"></i> Note: Allotment amount: 25% of Plot Cost (On or Before 7 Days from Booking). Full Payment within 30 days. *T&C apply, prices exclusive of taxes.
+        </div>
+
+        <!-- Amenities -->
+        <h2>World-Class Amenities</h2>
+        <div class="section-subhead">Designed for vibrant community living</div>
+        <div class="amenities-grid">
+            <div class="amenity-item"><i class="fas fa-shield-alt"></i> 24x7 Security</div>
+            <div class="amenity-item"><i class="fas fa-dharmachakra"></i> 100% Vastu</div>
+            <div class="amenity-item"><i class="fas fa-building"></i> Club House</div>
+            <div class="amenity-item"><i class="fas fa-lightbulb"></i> Designer Street Lighting</div>
+            <div class="amenity-item"><i class="fas fa-user-friends"></i> Guarded Community</div>
+            <div class="amenity-item"><i class="fas fa-tree"></i> Parks & Gardens</div>
+            <div class="amenity-item"><i class="fas fa-water"></i> Rain Water Harvesting</div>
+            <div class="amenity-item"><i class="fas fa-swimmer"></i> Swimming Pool</div>
+            <div class="amenity-item"><i class="fas fa-draw-polygon"></i> Underground Drainage</div>
+            <div class="amenity-item"><i class="fas fa-tint"></i> Underground Water Supply</div>
+            <div class="amenity-item"><i class="fas fa-road"></i> Wide Black Top Roads</div>
+        </div>
+
+        <!-- Location Highlights -->
+        <h2>📍 Location Highlights</h2>
+        <div class="section-subhead">Connectivity that accelerates growth</div>
+        <div class="highlights-list">
+            <div class="highlight-li"><i class="fas fa-city"></i> Amaravati Core Capital – Future Hub</div>
+            <div class="highlight-li"><i class="fas fa-exchange-alt"></i> Butterfly Junction @ Kaza</div>
+            <div class="highlight-li"><i class="fas fa-road"></i> Inner & Outer Ring Roads</div>
+            <div class="highlight-li"><i class="fas fa-bypass"></i> West & East Bypass Roads</div>
+            <div class="highlight-li"><i class="fas fa-highway"></i> NH-16 National Highway</div>
+            <div class="highlight-li"><i class="fas fa-laptop-code"></i> Ramakrishna Venuzia IT Towers</div>
+            <div class="highlight-li"><i class="fas fa-microchip"></i> Ratan Tata Innovation Hub</div>
+            <div class="highlight-li"><i class="fas fa-train"></i> Namburu – Errupalem Railway</div>
+            <div class="highlight-li"><i class="fas fa-university"></i> AIIMS & Nagarjuna University</div>
+            <div class="highlight-li"><i class="fas fa-chart-line"></i> IT Corridor – Jobs & Growth</div>
+        </div>
+
+        <!-- Investment banner -->
+        <div class="investment-banner">
+            <div class="investment-item"><i class="fas fa-chart-line"></i> <span>Rapid Development – Appreciation 40%+</span></div>
+            <div class="investment-item"><i class="fas fa-hand-holding-usd"></i> <span>Top Investment Opportunity</span></div>
+            <div class="investment-item"><i class="fas fa-gem"></i> <span>Premium Gated Enclave</span></div>
+        </div>
+
+        <!-- Enquiry Section -->
+        <div id="enquiry" class="enquiry-section">
+            <h2 class="enquiry-title"><i class="fab fa-whatsapp" style="color:#25D366;"></i> Book Your Dream Plot</h2>
+            <p style="font-size: 1rem; margin-bottom: 12px; color: #3b2a22;">Get site visit, price list & payment plan instantly on WhatsApp</p>
+            <div class="form-grid" id="enquiryForm">
+                <div class="input-group">
+                    <input type="text" id="name" placeholder="Full Name *" required>
+                </div>
+                <div class="input-group">
+                    <input type="tel" id="phone" placeholder="Mobile Number *" required>
+                </div>
+                <div class="input-group">
+                    <select id="phaseSelect">
+                        <option value="Phase 1 (₹25,999/sq.yd)">Phase 1 - Beverly Hills Kaza</option>
+                        <option value="Phase 2,3,4 (₹24,999/sq.yd)">Phase 2,3,4 - Best Deal</option>
+                        <option value="General Enquiry / Site Visit">General Enquiry / Site Visit</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="messageHint" placeholder="Any message / budget preference">
+                </div>
+                <button id="whatsappBtn" class="enquiry-btn"><i class="fab fa-whatsapp" style="font-size: 1.6rem;"></i> Send on WhatsApp</button>
+            </div>
+            <p style="font-size: 0.7rem; margin-top: 18px; opacity: 0.7;">* Our team will respond within minutes on WhatsApp with all details</p>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p><strong>🏡 BEVERLY HILLS KAZA</strong> — Amaravati's most vibrant plotted development</p>
+        <p style="margin: 12px 0;"><i class="fas fa-location-dot"></i> Kaza, Amaravati Core Capital Region | RERA Registered</p>
+        <p><i class="fab fa-whatsapp"></i> Enquiry via WhatsApp – instant response</p>
+        <p style="margin-top: 20px;">© 2025 Beverly Hills Kaza | All rights reserved | Premium Living</p>
+    </div>
+</footer>
+
+<!-- Fullscreen Modal for Image Enlargement -->
+<div id="imageModal" class="image-modal">
+    <button class="close-modal-btn" id="closeModalBtn">&times;</button>
+    <img class="modal-content" id="modalImage" alt="Enlarged view">
+</div>
+
+<script>
+    (function() {
+        // ---- Image Fullscreen Logic ----
+        const heroTrigger = document.getElementById('heroImageTrigger');
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const closeBtn = document.getElementById('closeModalBtn');
+        const heroImgElement = document.getElementById('heroImg');
+        
+        function openModal(imageSrc) {
+            if (!imageSrc) return;
+            modalImg.src = imageSrc;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+            modalImg.src = '';
+        }
+        
+        if (heroTrigger) {
+            heroTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const imgSrc = heroImgElement ? heroImgElement.getAttribute('src') : '';
+                if (imgSrc) openModal(imgSrc);
+            });
+        }
+        
+        if (closeBtn) {
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                closeModal();
+            });
+        }
+        
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
+        });
+        
+        // ---- WhatsApp Integration ----
+        const whatsappBtn = document.getElementById('whatsappBtn');
+        // Replace with official WhatsApp number including country code (without '+')
+        const businessNumber = "919876543210";   // <-- UPDATE WITH ACTUAL NUMBER
+        
+        function formatWhatsMsg(name, phone, phase, optionalMsg) {
+            let msg = `🏡✨ *BEVERLY HILLS KAZA ENQUIRY* ✨🏡%0A%0A`;
+            msg += `*👤 Name:* ${name || "—"}%0A`;
+            msg += `*📞 Mobile:* ${phone || "—"}%0A`;
+            msg += `*📍 Selected Phase:* ${phase}%0A`;
+            if (optionalMsg && optionalMsg.trim() !== "") {
+                msg += `*💬 Message:* ${optionalMsg.trim()}%0A`;
+            }
+            msg += `%0A🔹 Kindly share pricing, site visit & payment plan details.`;
+            return msg;
+        }
+        
+        function validateForm() {
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            if (!name) { alert("Please enter your full name."); return false; }
+            if (!phone) { alert("Please enter your mobile number."); return false; }
+            const phoneDigits = phone.replace(/\D/g, '');
+            if (phoneDigits.length < 10) { alert("Please enter a valid 10-digit mobile number."); return false; }
+            return true;
+        }
+        
+        if (whatsappBtn) {
+            whatsappBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (!validateForm()) return;
+                const name = document.getElementById('name').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const phaseSelect = document.getElementById('phaseSelect');
+                const phase = phaseSelect.options[phaseSelect.selectedIndex].text;
+                const optionalMsg = document.getElementById('messageHint').value;
+                const message = formatWhatsMsg(name, phone, phase, optionalMsg);
+                const whatsappUrl = `https://wa.me/${businessNumber}?text=${message}`;
+                window.open(whatsappUrl, '_blank');
+            });
+        }
+        
+        // Smooth scroll for enquiry links
+        document.querySelectorAll('a[href="#enquiry"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const enquirySection = document.getElementById('enquiry');
+                if (enquirySection) enquirySection.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    })();
+</script>
+</body>
+</html>
