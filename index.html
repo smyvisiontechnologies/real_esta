@@ -121,9 +121,9 @@
             letter-spacing: 1px;
         }
 
-        /* Hero Section - default row layout (desktop) */
+        /* Hero Section - with video instead of image */
         .hero {
-            background: radial-gradient(circle at 80% 20%, rgba(255, 239, 210, 0.8), rgba(255, 235, 205, 0.9)), url('https://placehold.co/1600x800/fce5cd/d99e4e?text=Luxury+Plots+Visual');
+            background: radial-gradient(circle at 80% 20%, rgba(255, 239, 210, 0.8), rgba(255, 235, 205, 0.9));
             background-size: cover;
             background-blend-mode: overlay;
             padding: 70px 0 80px;
@@ -137,10 +137,10 @@
             align-items: center;
         }
 
-        /* On mobile: image first, content below */
+        /* On mobile: video first, content below */
         @media (max-width: 768px) {
             .hero-grid {
-                flex-direction: column-reverse; /* Image appears first, then content below */
+                flex-direction: column-reverse; /* Video appears first, then content below */
                 gap: 32px;
             }
             .hero-content {
@@ -215,8 +215,8 @@
             font-weight: 600;
         }
 
-        /* Image container with pointer cursor for fullscreen zoom */
-        .hero-image-card {
+        /* Video container with pointer cursor for fullscreen zoom (play/pause on click) */
+        .hero-video-card {
             flex: 0.9;
             background: linear-gradient(145deg, #ffe6c7, #ffd9b5);
             border-radius: 48px;
@@ -224,17 +224,42 @@
             box-shadow: var(--shadow-lg);
             transition: 0.3s;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
-        .hero-image-card:hover {
+        .hero-video-card:hover {
             transform: scale(1.02);
         }
-        .hero-image-card img {
+        .hero-video-card video {
             width: 100%;
             border-radius: 40px;
             aspect-ratio: 4/3;
             object-fit: cover;
             display: block;
+            pointer-events: none;  /* to let parent div handle clicks for fullscreen/playback */
+        }
+        /* Play overlay hint (optional) */
+        .video-overlay-icon {
+            position: absolute;
+            bottom: 20px;
+            right: 24px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            border-radius: 40px;
+            padding: 6px 14px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             pointer-events: none;
+            z-index: 2;
+            font-family: 'Inter', sans-serif;
+        }
+        .video-overlay-icon i {
+            font-size: 1rem;
+            color: #ffd966;
         }
 
         /* Cards & Amenities - fully responsive */
@@ -425,8 +450,8 @@
             text-align: center;
         }
 
-        /* FULLSCREEN MODAL STYLES - Image Enlarger */
-        .image-modal {
+        /* FULLSCREEN MODAL STYLES - Video Enlarger (fullscreen video playback) */
+        .video-modal {
             display: none;
             position: fixed;
             top: 0;
@@ -439,13 +464,22 @@
             align-items: center;
             cursor: pointer;
             backdrop-filter: blur(8px);
+            flex-direction: column;
         }
-        .modal-content {
-            max-width: 90vw;
-            max-height: 90vh;
-            object-fit: contain;
-            border-radius: 24px;
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        .modal-video-container {
+            width: 90vw;
+            max-width: 1200px;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.5);
+            background: #000;
+        }
+        .modal-video-container video {
+            width: 100%;
+            max-height: 85vh;
+            display: block;
+            border-radius: 28px;
+            outline: none;
         }
         .close-modal-btn {
             position: absolute;
@@ -478,6 +512,7 @@
             .investment-item { font-size: 1rem; }
             .close-modal-btn { top: 20px; right: 20px; width: 50px; height: 50px; font-size: 2rem; }
             h2 { font-size: 2rem; }
+            .modal-video-container { width: 95vw; }
         }
         @media (max-width: 550px) {
             .hero-stats { flex-direction: column; align-items: center; gap: 12px;}
@@ -506,11 +541,17 @@
 </nav>
 
 <main>
-    <!-- Hero Section with Clickable Image - on mobile image appears above text due to flex-direction: column-reverse -->
+    <!-- Hero Section with Video instead of image - clickable to fullscreen & play/pause toggle -->
     <section class="hero">
         <div class="container hero-grid">
-            <div class="hero-image-card" id="heroImageTrigger">
-                <img src="https://bbgindia.com/assets/img/Img-1_134076800971374647.jpeg" alt="Beverly Hills Kaza vibrant view" id="heroImg">
+            <div class="hero-video-card" id="heroVideoTrigger">
+                <video id="heroVideo" loop muted playsinline>
+                    <source src="videos/logo.mp4" type="video/mp4">
+                    Your browser does not support the video tag. 
+                </video>
+                <div class="video-overlay-icon">
+                    <i class="fas fa-expand"></i> <span>Click to fullscreen • Play/Pause</span>
+                </div>
             </div>
             <div class="hero-content">
                 <div class="hero-badge"><i class="fas fa-bolt"></i> Premium Plots • High ROI</div>
@@ -635,42 +676,71 @@
     </div>
 </footer>
 
-<!-- Fullscreen Modal for Image Enlargement -->
-<div id="imageModal" class="image-modal">
+<!-- Fullscreen Modal for Video Enlargement -->
+<div id="videoModal" class="video-modal">
     <button class="close-modal-btn" id="closeModalBtn">&times;</button>
-    <img class="modal-content" id="modalImage" alt="Enlarged view">
+    <div class="modal-video-container">
+        <video id="modalVideo" controls loop playsinline>
+            <source src="videos/logo.mp4" type="video/mp4">
+        </video>
+    </div>
 </div>
 
 <script>
     (function() {
-        // ---- Image Fullscreen Logic ----
-        const heroTrigger = document.getElementById('heroImageTrigger');
-        const modal = document.getElementById('imageModal');
-        const modalImg = document.getElementById('modalImage');
+        // ---- Video Fullscreen & Playback Logic ----
+        const heroVideoCard = document.getElementById('heroVideoTrigger');
+        const heroVideoElem = document.getElementById('heroVideo');
+        const modal = document.getElementById('videoModal');
+        const modalVideoElem = document.getElementById('modalVideo');
         const closeBtn = document.getElementById('closeModalBtn');
-        const heroImgElement = document.getElementById('heroImg');
-        
-        function openModal(imageSrc) {
-            if (!imageSrc) return;
-            modalImg.src = imageSrc;
+
+        // Function to open modal and sync playback
+        function openVideoModal() {
+            if (!heroVideoElem || !modalVideoElem) return;
+            // Pause hero video if playing before opening modal
+            const wasPlaying = !heroVideoElem.paused;
+            if (wasPlaying) {
+                heroVideoElem.pause();
+            }
+            // Sync modal video time with current hero video time
+            modalVideoElem.currentTime = heroVideoElem.currentTime;
+            modalVideoElem.load(); // ensure source loads
+            modalVideoElem.play().catch(e => console.log("Autoplay prevented:", e));
             modal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
-        
+
         function closeModal() {
             modal.style.display = 'none';
             document.body.style.overflow = '';
-            modalImg.src = '';
+            // pause modal video when closed
+            if (modalVideoElem) {
+                modalVideoElem.pause();
+            }
+            // optionally resume hero video if it was playing before? We'll resume only if user wants but keep consistent: no auto resume.
         }
+
+        // Click on video card: toggle play/pause on hero video + if clicked, we also open fullscreen on double click?
+        // Requirement: "in place of image i want video to play which is videos/logo.mp4" with fullscreen zoom capability.
+        // We'll implement: Single click toggles play/pause on hero video, and also supports opening modal (fullscreen) via the overlay hint or any click? Better UX: clicking anywhere on the video card will open fullscreen modal (like image zoom), but we also want to allow play/pause. 
+        // To match image-like behavior (click to enlarge) plus video control: Let's make it: single click -> opens fullscreen modal where user can control playback. 
+        // But also we provide a separate play/pause on hero? We can add a small play button overlay but simpler: since video is muted & autoplay loop we keep it playing by default. The user can click to expand to fullscreen modal (which has controls). 
+        // For consistency with original image click (which opened fullscreen image), we open fullscreen video modal on click. That's perfect.
         
-        if (heroTrigger) {
-            heroTrigger.addEventListener('click', (e) => {
+        // However we might also need to allow manual play/pause on hero for better UX? But the main expectation: "in place of image I want video to play" and click to enlarge same as image. So we will:
+        // - Hero video plays automatically (muted, loop)
+        // - Clicking on video card opens fullscreen video modal with controls, and pauses hero video.
+        // - This matches the original image zoom behavior. Also on mobile the video appears above text.
+        
+        if (heroVideoCard) {
+            heroVideoCard.addEventListener('click', (e) => {
                 e.stopPropagation();
-                const imgSrc = heroImgElement ? heroImgElement.getAttribute('src') : '';
-                if (imgSrc) openModal(imgSrc);
+                openVideoModal();
             });
         }
         
+        // Close modal functionality
         if (closeBtn) {
             closeBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -686,9 +756,17 @@
             if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
         });
         
+        // Ensure hero video autoplays muted loop (important for modern browsers)
+        if (heroVideoElem) {
+            heroVideoElem.muted = true;
+            heroVideoElem.loop = true;
+            heroVideoElem.play().catch(err => console.log("Autoplay blocked, user interaction may be needed", err));
+            // In case autoplay fails due to policy, we can add a subtle play icon? Not needed as click to enlarge anyway.
+        }
+        
         // ---- WhatsApp Integration ----
         const whatsappBtn = document.getElementById('whatsappBtn');
-        // Replace with official WhatsApp number including country code (without '+')
+        // Replace with actual WhatsApp number (including country code, without '+')
         const businessNumber = "919876543210";   // <-- UPDATE WITH ACTUAL NUMBER
         
         function formatWhatsMsg(name, phone, phase, optionalMsg) {
